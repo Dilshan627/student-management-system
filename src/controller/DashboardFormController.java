@@ -118,7 +118,7 @@ public class DashboardFormController {
         if (btnSave.getText().equalsIgnoreCase("Save")) {
 
             try {
-                CrudUtil.execute("INSERT INTO student VALUES (?,?,?,?,?,?)",id,name,email,contact,address,nic);
+                CrudUtil.execute("INSERT INTO student VALUES (?,?,?,?,?,?)", id, name, email, contact, address, nic);
                 new Alert(Alert.AlertType.CONFIRMATION, id + " save student").show();
 
             } catch (SQLException | ClassNotFoundException e) {
@@ -126,15 +126,25 @@ public class DashboardFormController {
                 throw new RuntimeException(e);
             }
 
-        }else {
+        } else {
             try {
-                CrudUtil.execute("");
-            } catch (SQLException |ClassNotFoundException e) {
+                CrudUtil.execute("UPDATE Student SET student_name=?,email=?,contact=?,address=?,nic=? where student_id=?", name, email, contact, address, nic, id);
+                new Alert(Alert.AlertType.CONFIRMATION, id + " update student").show();
+
+            } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
-        }
-        tblStudent.refresh();
 
+            StudentTm selectedStudent = tblStudent.getSelectionModel().getSelectedItem();
+            selectedStudent.setStudentName(name);
+            selectedStudent.setEmail(email);
+            selectedStudent.setContact(contact);
+            selectedStudent.setAddress(address);
+            selectedStudent.setNic(nic);
+
+        }
+
+        tblStudent.refresh();
     }
 
     public void DeleteOnAction(ActionEvent actionEvent) {
