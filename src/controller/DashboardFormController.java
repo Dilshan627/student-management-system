@@ -148,6 +148,14 @@ public class DashboardFormController {
     }
 
     public void DeleteOnAction(ActionEvent actionEvent) {
+
+        try {
+            CrudUtil.execute("DELETE FROM subject WHERE subject_id=?",txtAddress.getText());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void newOnAction(ActionEvent actionEvent) {
