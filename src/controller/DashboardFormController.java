@@ -119,7 +119,7 @@ public class DashboardFormController {
             try {
                 CrudUtil.execute("INSERT INTO student VALUES (?,?,?,?,?,?)", id, name, email, contact, address, nic);
 
-
+                new Alert(Alert.AlertType.CONFIRMATION, " save student").show();
             } catch (SQLException | ClassNotFoundException e) {
                 new Alert(Alert.AlertType.ERROR, id + " already exists").show();
                 throw new RuntimeException(e);
@@ -128,7 +128,7 @@ public class DashboardFormController {
         } else {
             try {
                 CrudUtil.execute("UPDATE Student SET student_name=?,email=?,contact=?,address=?,nic=? where student_id=?", name, email, contact, address, nic, id);
-
+                new Alert(Alert.AlertType.CONFIRMATION, " update student").show();
 
             } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);

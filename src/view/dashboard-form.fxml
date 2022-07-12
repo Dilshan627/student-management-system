@@ -5,6 +5,8 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="712.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DashboardFormController">
    <children>
@@ -26,7 +28,12 @@
       <JFXTextField fx:id="txtNic" labelFloat="true" layoutX="769.0" layoutY="150.0" promptText="nic" />
       <Button fx:id="btnSave" layoutX="483.0" layoutY="209.0" mnemonicParsing="false" onAction="#saveOnAction" prefHeight="25.0" prefWidth="93.0" text="Save" />
       <Button layoutX="593.0" layoutY="209.0" mnemonicParsing="false" onAction="#DeleteOnAction" prefHeight="25.0" prefWidth="74.0" text="Delete" />
-      <JFXTextField fx:id="txtSearch" layoutX="347.0" layoutY="68.0" prefHeight="25.0" prefWidth="352.0" promptText="search" />
+      <JFXTextField fx:id="txtSearch" layoutX="347.0" layoutY="85.0" prefHeight="25.0" prefWidth="352.0" promptText="search" />
       <Button layoutX="392.0" layoutY="209.0" mnemonicParsing="false" onAction="#newOnAction" prefHeight="25.0" prefWidth="74.0" text="New +" />
+      <Text layoutX="46.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Student Form" wrappingWidth="184.0">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
