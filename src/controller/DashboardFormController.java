@@ -47,7 +47,6 @@ public class DashboardFormController {
 
         tblStudent.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             btnSave.setText(newValue != null ? "Update" : "Save");
-            btnSave.setDisable(newValue == null);
             txtStudentId.setEditable(false);
             if (newValue != null) {
                 txtStudentId.setText(newValue.getStudentId());
@@ -119,7 +118,7 @@ public class DashboardFormController {
 
             try {
                 CrudUtil.execute("INSERT INTO student VALUES (?,?,?,?,?,?)", id, name, email, contact, address, nic);
-                new Alert(Alert.AlertType.CONFIRMATION, id + " save student").show();
+
 
             } catch (SQLException | ClassNotFoundException e) {
                 new Alert(Alert.AlertType.ERROR, id + " already exists").show();
@@ -129,7 +128,7 @@ public class DashboardFormController {
         } else {
             try {
                 CrudUtil.execute("UPDATE Student SET student_name=?,email=?,contact=?,address=?,nic=? where student_id=?", name, email, contact, address, nic, id);
-                new Alert(Alert.AlertType.CONFIRMATION, id + " update student").show();
+
 
             } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
@@ -145,12 +144,8 @@ public class DashboardFormController {
         }
 
         tblStudent.refresh();
-    }
-
-    public void DeleteOnAction(ActionEvent actionEvent) {
-
         try {
-            CrudUtil.execute("DELETE FROM subject WHERE subject_id=?",txtAddress.getText());
+            loadData();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } catch (ClassNotFoundException e) {
@@ -158,9 +153,27 @@ public class DashboardFormController {
         }
     }
 
+    public void DeleteOnAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
+
+        try {
+            CrudUtil.execute("DELETE FROM student WHERE student_id=?",txtStudentId.getText());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+       loadData();
+        clear();
+    }
+
     public void newOnAction(ActionEvent actionEvent) {
+      clear();
+    }
+    private void clear(){
         txtStudentId.setEditable(true);
         btnSave.setText("Save");
+        btnSave.setDisable(false);
         txtStudentId.clear();
         txtName.clear();
         txtEmail.clear();
@@ -168,4 +181,6 @@ public class DashboardFormController {
         txtAddress.clear();
         txtNic.clear();
     }
+
+
 }
