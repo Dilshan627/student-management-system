@@ -68,4 +68,16 @@ public class StudentTm {
     public void setNic(String nic) {
         this.nic = nic;
     }
+
+    @Override
+    public String toString() {
+        return "StudentTm{" +
+                "studentId='" + studentId + '\'' +
+                ", studentName='" + studentName + '\'' +
+                ", email='" + email + '\'' +
+                ", contact='" + contact + '\'' +
+                ", address='" + address + '\'' +
+                ", nic='" + nic + '\'' +
+                '}';
+    }
 }

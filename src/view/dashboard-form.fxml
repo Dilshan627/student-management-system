@@ -6,10 +6,9 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane prefHeight="712.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DashboardFormController">
    <children>
-      <TableView fx:id="tblStudent" layoutX="27.0" layoutY="198.0" prefHeight="427.0" prefWidth="971.0">
+      <TableView fx:id="tblStudent" layoutX="27.0" layoutY="270.0" prefHeight="427.0" prefWidth="971.0">
         <columns>
           <TableColumn prefWidth="106.0" text="student Id" />
           <TableColumn prefWidth="141.0" text="Name" />
@@ -19,13 +18,14 @@
             <TableColumn prefWidth="193.0" text="nic" />
         </columns>
       </TableView>
-      <JFXTextField fx:id="studentId" labelFloat="true" layoutX="27.0" layoutY="78.0" promptText="student id" />
-      <JFXTextField fx:id="name" labelFloat="true" layoutX="181.0" layoutY="78.0" promptText="name" />
-      <JFXTextField fx:id="email" labelFloat="true" layoutX="332.0" layoutY="78.0" promptText="email" />
-      <JFXTextField fx:id="contact" labelFloat="true" layoutX="477.0" layoutY="78.0" promptText="contact" />
-      <JFXTextField fx:id="address" labelFloat="true" layoutX="619.0" layoutY="78.0" promptText="address" />
-      <JFXTextField fx:id="nic" labelFloat="true" layoutX="769.0" layoutY="78.0" promptText="nic" />
-      <Button fx:id="btnSave" layoutX="264.0" layoutY="134.0" mnemonicParsing="false" onAction="#saveOnAction" prefHeight="25.0" prefWidth="74.0" text="add" />
-      <Button layoutX="363.0" layoutY="134.0" mnemonicParsing="false" onAction="#DeleteOnAction" prefHeight="25.0" prefWidth="74.0" text="delete" />
+      <JFXTextField fx:id="txtStudentId" labelFloat="true" layoutX="27.0" layoutY="150.0" promptText="student id" />
+      <JFXTextField fx:id="txtName" labelFloat="true" layoutX="181.0" layoutY="150.0" promptText="name" />
+      <JFXTextField fx:id="txtEmail" labelFloat="true" layoutX="332.0" layoutY="150.0" promptText="email" />
+      <JFXTextField fx:id="txtContact" labelFloat="true" layoutX="477.0" layoutY="150.0" promptText="contact" />
+      <JFXTextField fx:id="txtAddress" labelFloat="true" layoutX="619.0" layoutY="150.0" promptText="address" />
+      <JFXTextField fx:id="txtNic" labelFloat="true" layoutX="769.0" layoutY="150.0" promptText="nic" />
+      <Button fx:id="btnSave" layoutX="264.0" layoutY="206.0" mnemonicParsing="false" onAction="#saveOnAction" prefHeight="25.0" prefWidth="74.0" text="add" />
+      <Button layoutX="363.0" layoutY="206.0" mnemonicParsing="false" onAction="#DeleteOnAction" prefHeight="25.0" prefWidth="74.0" text="delete" />
+      <JFXTextField fx:id="txtSearch" layoutX="347.0" layoutY="68.0" prefHeight="25.0" prefWidth="352.0" promptText="search" />
    </children>
 </AnchorPane>
