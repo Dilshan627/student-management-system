@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -27,7 +28,7 @@ public class DashboardFormController {
     public JFXTextField txtSearch;
 
 
-    public void initialize(){
+    public void initialize() {
         try {
             loadData();
         } catch (SQLException e) {
@@ -42,6 +43,22 @@ public class DashboardFormController {
         tblStudent.getColumns().get(3).setCellValueFactory(new PropertyValueFactory<>("contact"));
         tblStudent.getColumns().get(4).setCellValueFactory(new PropertyValueFactory<>("address"));
         tblStudent.getColumns().get(5).setCellValueFactory(new PropertyValueFactory<>("nic"));
+
+
+        tblStudent.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            btnSave.setText(newValue != null ? "Update" : "Save");
+            btnSave.setDisable(newValue == null);
+            txtStudentId.setEditable(false);
+            if (newValue != null) {
+                txtStudentId.setText(newValue.getStudentId());
+                txtName.setText(newValue.getStudentName());
+                txtEmail.setText(newValue.getEmail());
+                txtContact.setText(newValue.getContact());
+                txtAddress.setText(newValue.getAddress());
+                txtNic.setText(newValue.getNic());
+            }
+        });
+
     }
 
     private void loadData() throws SQLException, ClassNotFoundException {
@@ -49,7 +66,7 @@ public class DashboardFormController {
         ResultSet result = CrudUtil.execute("SELECT * FROM student");
         ObservableList<StudentTm> obList = FXCollections.observableArrayList();
 
-        while (result.next()){
+        while (result.next()) {
             obList.add(
                     new StudentTm(
                             result.getString("student_id"),
@@ -76,10 +93,7 @@ public class DashboardFormController {
 
                 if (Student.getStudentId().toLowerCase().indexOf(lowerCaseFilter) != -1) {
                     return true;
-                } else if (Student.getStudentName().toLowerCase().indexOf(lowerCaseFilter) != -1)
-                    return true;
-                else
-                    return false;
+                } else return Student.getStudentName().toLowerCase().indexOf(lowerCaseFilter) != -1;
 
             });
         });
@@ -94,8 +108,46 @@ public class DashboardFormController {
 
 
     public void saveOnAction(ActionEvent actionEvent) {
+        String id = txtStudentId.getText();
+        String name = txtName.getText();
+        String email = txtEmail.getText();
+        String contact = txtContact.getText();
+        String address = txtAddress.getText();
+        String nic = txtNic.getText();
+
+        if (btnSave.getText().equalsIgnoreCase("Save")) {
+
+            try {
+                CrudUtil.execute("INSERT INTO student VALUES (?,?,?,?,?,?)",id,name,email,contact,address,nic);
+                new Alert(Alert.AlertType.CONFIRMATION, id + " save student").show();
+
+            } catch (SQLException | ClassNotFoundException e) {
+                new Alert(Alert.AlertType.ERROR, id + " already exists").show();
+                throw new RuntimeException(e);
+            }
+
+        }else {
+            try {
+                CrudUtil.execute("");
+            } catch (SQLException |ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        tblStudent.refresh();
+
     }
 
     public void DeleteOnAction(ActionEvent actionEvent) {
+    }
+
+    public void newOnAction(ActionEvent actionEvent) {
+        txtStudentId.setEditable(true);
+        btnSave.setText("Save");
+        txtStudentId.clear();
+        txtName.clear();
+        txtEmail.clear();
+        txtContact.clear();
+        txtAddress.clear();
+        txtNic.clear();
     }
 }

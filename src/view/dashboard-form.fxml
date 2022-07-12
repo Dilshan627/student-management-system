@@ -24,8 +24,9 @@
       <JFXTextField fx:id="txtContact" labelFloat="true" layoutX="477.0" layoutY="150.0" promptText="contact" />
       <JFXTextField fx:id="txtAddress" labelFloat="true" layoutX="619.0" layoutY="150.0" promptText="address" />
       <JFXTextField fx:id="txtNic" labelFloat="true" layoutX="769.0" layoutY="150.0" promptText="nic" />
-      <Button fx:id="btnSave" layoutX="264.0" layoutY="206.0" mnemonicParsing="false" onAction="#saveOnAction" prefHeight="25.0" prefWidth="74.0" text="add" />
-      <Button layoutX="363.0" layoutY="206.0" mnemonicParsing="false" onAction="#DeleteOnAction" prefHeight="25.0" prefWidth="74.0" text="delete" />
+      <Button fx:id="btnSave" layoutX="483.0" layoutY="209.0" mnemonicParsing="false" onAction="#saveOnAction" prefHeight="25.0" prefWidth="93.0" text="Save" />
+      <Button layoutX="593.0" layoutY="209.0" mnemonicParsing="false" onAction="#DeleteOnAction" prefHeight="25.0" prefWidth="74.0" text="Delete" />
       <JFXTextField fx:id="txtSearch" layoutX="347.0" layoutY="68.0" prefHeight="25.0" prefWidth="352.0" promptText="search" />
+      <Button layoutX="392.0" layoutY="209.0" mnemonicParsing="false" onAction="#newOnAction" prefHeight="25.0" prefWidth="74.0" text="New +" />
    </children>
 </AnchorPane>
